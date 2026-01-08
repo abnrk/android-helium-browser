@@ -33,14 +33,14 @@ solutions = [
 ]
 target_os = ["android"]
 EOF
-git submodule foreach git config -f ./.git/config submodule.$name.ignore all
-git config --add remote.origin.fetch '+refs/tags/*:refs/tags/*'
+# git submodule foreach git config -f ./.git/config submodule.$name.ignore all
+# git config --add remote.origin.fetch '+refs/tags/*:refs/tags/*'
 
 # https://grapheneos.org/build#browser-and-webview
-replace "$SCRIPT_DIR/vanadium/patches" "VANADIUM" "HELIUM"
-replace "$SCRIPT_DIR/vanadium/patches" "Vanadium" "Helium"
-replace "$SCRIPT_DIR/vanadium/patches" "vanadium" "helium"
-git am --whitespace=nowarn --keep-non-patch $SCRIPT_DIR/vanadium/patches/*.patch
+# replace "$SCRIPT_DIR/vanadium/patches" "VANADIUM" "HELIUM"
+# replace "$SCRIPT_DIR/vanadium/patches" "Vanadium" "Helium"
+# replace "$SCRIPT_DIR/vanadium/patches" "vanadium" "helium"
+# git am --whitespace=nowarn --keep-non-patch $SCRIPT_DIR/vanadium/patches/*.patch
 
 gclient sync -D --no-history --nohooks
 gclient runhooks
