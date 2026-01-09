@@ -1,7 +1,7 @@
 #!/bin/bash
 source common.sh
 set_keys
-export VERSION=$(grep -m1 -o '[0-9]\+\(\.[0-9]\+\)\{3\}' vanadium/args.gn)
+export VERSION=$(curl -s 'https://versionhistory.googleapis.com/v1/chrome/platforms/android/channels/stable/versions/all/releases'  | jq -rc '.releases[].version' | sort -t. -k 1,1n -k 2,2n -k 3,3n -k 4,4n | tail -n 1)
 export CHROMIUM_SOURCE=https://github.com/chromium/chromium.git # https://chromium.googlesource.com/chromium/src.git
 export DEBIAN_FRONTEND=noninteractive
 sudo apt update
